@@ -55,4 +55,6 @@ MonoBehaviour:
   worldCamera: {fileID: 0}
   enableDebug: 0
   debugCanvas: {fileID: 0}
+  debugDetected: {fileID: 0}
   world: {fileID: 0}
+  playerDetected: 0

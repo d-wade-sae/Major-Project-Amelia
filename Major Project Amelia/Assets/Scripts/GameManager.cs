@@ -14,9 +14,13 @@ public class GameManager : MonoBehaviour {
     [Header("Canvas")]
     public bool enableDebug;
     public GameObject debugCanvas;
+    public Text debugDetected;
 
     [Header("World Variables")]
     public GameObject world;
+
+    [Header("Battle Attributes")]
+    public bool playerDetected;
 
 
     void Awake()
@@ -38,10 +42,23 @@ public class GameManager : MonoBehaviour {
         world.SetActive(true);
         player.SetActive(true);
         worldCamera.SetActive(true);
+
+        StartDebugCanvas(); // All GetComponent<Text> for debug 
 	}
 	
 	void Update ()
     {
-		
+        debugDetected.text = "Player Detected: " + playerDetected.ToString();
 	}
+
+    public void PlayerDetected (GameObject triggerTile)
+    {
+        DetectorTile tile = triggerTile.GetComponent<DetectorTile>();
+        playerDetected = true;
+    }
+
+    void StartDebugCanvas () // All GetComponent<Text> for debug 
+    {
+        debugDetected.GetComponent<Text>();
+    }
 }
