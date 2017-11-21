@@ -7,9 +7,11 @@ public class GameManager : MonoBehaviour {
 
     [Header("Player Variables")]
     public GameObject player;
+    public GameObject companion;
 
     [Header("Cameras")]
     public GameObject worldCamera;
+    public GameObject battleCamera;
 
     [Header("Canvas")]
     // Debug Canvas Variables
@@ -21,10 +23,11 @@ public class GameManager : MonoBehaviour {
 
     [Header("World Variables")]
     public GameObject world;
+    public GameObject battleArea;
     public static GameManager instance;
 
     [Header("Battle Attributes")]
-    public bool playerDetected;
+    public bool playerDetected; 
     public bool battleStarted;
     public int randomNumber;
     public int battleStartCount;
@@ -53,26 +56,39 @@ public class GameManager : MonoBehaviour {
             PlayerSpawn.transform.position = playerSpawnLocation;
             PlayerSpawn.name = "Player";
         }
+
+        if (!GameObject.Find("HopeCompanion"))
+        {
+            GameObject companionSpawn = Instantiate(companion, Vector2.zero, Quaternion.identity) as GameObject;
+            Vector2 companionSpawnPoint = new Vector2(3.5f, 3.5f);
+            companionSpawn.transform.position = companionSpawnPoint;
+            companionSpawn.name = "HopeCompanion";
+        }
     }
 
     void Start ()
     {
+        // Sets WorldMaster just in case of issue and disables
+        world = GameObject.Find("WorldMaster");
         world.SetActive(true);
-        player.SetActive(true);
+        // Sets BattleArea just in case of issue and disables
+        battleArea = GameObject.Find("BattleMaster");
+        battleArea.SetActive(false);
+        // Sets Main Camera to active and disables any others
         worldCamera.SetActive(true);
-
-        // Enabling Debug Canvas
+        battleCamera.SetActive(false);
+        // Sets Player to Active and Disables Battle Player
+        player.SetActive(true);
+        // Checking to see if Debug Canvas should be enabled or disabled for testing purposes
         if (enableDebug == true)
         {
             debugCanvas.SetActive(true);
         }
-
         else
         {
             debugCanvas.SetActive(false);
         }
-
-        StartDebugCanvas(); // All GetComponent<Text> for debug 
+        StartDebugCanvas(); // All GetComponent<Text> for debug
 	}
 	
 	void Update ()
@@ -88,7 +104,7 @@ public class GameManager : MonoBehaviour {
         triggeredTile = tile;
         if (battleStartCount == 0)
         {
-            InvokeRepeating("CallRandomNumber", 3f, 1.25f);
+            InvokeRepeating("CallRandomNumber", 1.5f, 1.25f);
             print("Invoke Repeating");
         }
 
@@ -111,13 +127,20 @@ public class GameManager : MonoBehaviour {
         {
             battleStartCount++;
             StartBattle();
-            randomNumber = 0;
         }
     }
 
     void StartBattle()
     {
-        CancelInvoke("CallRandomNumber");
+        CancelInvoke("CallRandomNumber"); // stops calling the random number
+        // Enabling Battle Area for Setup
+        battleArea.SetActive(true);
+
+        // Deactivates the player and companion
+        player.SetActive(false); 
+        companion.SetActive(false);
         battleStarted = true;
+
+
     }
 }

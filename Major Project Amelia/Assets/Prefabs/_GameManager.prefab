@@ -51,11 +51,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 817ed3a7a8db6064eadc2e9236c13614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1444716142984064, guid: 3a1f29f32d8fbfa43b77b95845234ace, type: 2}
+  player: {fileID: 0}
+  companion: {fileID: 1908118770718674, guid: be75f069beb50db4abe82acf3c89a0fe, type: 2}
   worldCamera: {fileID: 0}
-  enableDebug: 0
+  battleCamera: {fileID: 0}
+  enableDebug: 1
   debugCanvas: {fileID: 0}
   debugDetected: {fileID: 0}
+  randomNumberDebug: {fileID: 0}
+  battleStartedDebug: {fileID: 0}
   world: {fileID: 0}
+  battleArea: {fileID: 0}
   playerDetected: 0
   battleStarted: 0
+  randomNumber: 0
+  battleStartCount: 0

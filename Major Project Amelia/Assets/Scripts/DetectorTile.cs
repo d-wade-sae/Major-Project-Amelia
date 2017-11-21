@@ -7,7 +7,7 @@ public class DetectorTile : MonoBehaviour {
     // Public Variables
     [Header("Tile Variables")]
     public string tileName; // name of tile
-    public string region; // region for tile (enemies that spawn)
+    public int region; // region for tile (enemies that spawn)
     public int tilePercentage; // 
     public GameObject tile;
 
@@ -46,5 +46,7 @@ public class DetectorTile : MonoBehaviour {
         player = null;
         detected = false;
         GM.playerDetected = false;
+        GM.randomNumber = 0;
+        GM.CancelInvoke("CallRandomNumber");
     }
 }
