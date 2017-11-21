@@ -5,13 +5,19 @@ using UnityEngine.UI;
 
 public class BattleManager : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
+    private GameManager GM;
+
+    [Header("Battle Canvas")]
+    public GameObject battleCanvas;
+
+	void Start ()
+    {
+        GM = GameObject.Find("_GameManager").GetComponent<GameManager>();
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	
+	void Update ()
+    {
 		
 	}
 }

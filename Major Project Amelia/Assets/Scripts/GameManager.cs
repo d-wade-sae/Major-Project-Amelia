@@ -77,8 +77,9 @@ public class GameManager : MonoBehaviour {
         // Sets Main Camera to active and disables any others
         worldCamera.SetActive(true);
         battleCamera.SetActive(false);
-        // Sets Player to Active and Disables Battle Player
+        // Sets Player/Companion to Active and Disables Battle Player
         player.SetActive(true);
+        companion.SetActive(true);
         // Checking to see if Debug Canvas should be enabled or disabled for testing purposes
         if (enableDebug == true)
         {
