@@ -51,10 +51,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 817ed3a7a8db6064eadc2e9236c13614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1444716142984064, guid: 3a1f29f32d8fbfa43b77b95845234ace, type: 2}
   worldCamera: {fileID: 0}
   enableDebug: 0
   debugCanvas: {fileID: 0}
   debugDetected: {fileID: 0}
   world: {fileID: 0}
   playerDetected: 0
+  battleStarted: 0
