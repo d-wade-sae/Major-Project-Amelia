@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4376561606427552}
   - component: {fileID: 114588658899027162}
+  - component: {fileID: 114478011085377500}
   m_Layer: 0
   m_Name: _GameManager
   m_TagString: Untagged
@@ -40,6 +41,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114478011085377500
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1351545412584882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6909410651539d4d90c79b47aa46872, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  background: {fileID: 0}
+  battlePlayer: {fileID: 0}
+  battleCompanion: {fileID: 0}
+  battleCanvas: {fileID: 0}
 --- !u!114 &114588658899027162
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -52,11 +68,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  companion: {fileID: 1908118770718674, guid: be75f069beb50db4abe82acf3c89a0fe, type: 2}
+  companion: {fileID: 0}
   worldCamera: {fileID: 0}
   battleCamera: {fileID: 0}
   enableDebug: 1
   debugCanvas: {fileID: 0}
+  battleCanvas: {fileID: 0}
   debugDetected: {fileID: 0}
   randomNumberDebug: {fileID: 0}
   battleStartedDebug: {fileID: 0}

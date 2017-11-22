@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour {
     // Debug Canvas Variables
     public bool enableDebug;
     public GameObject debugCanvas;
+    public GameObject battleCanvas;
     public Text debugDetected;
     public Text randomNumberDebug;
     public Text battleStartedDebug;
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour {
     public GameObject world;
     public GameObject battleArea;
     public static GameManager instance;
+    public BattleManager BM;
 
     [Header("Battle Attributes")]
     public bool playerDetected; 
@@ -73,6 +75,7 @@ public class GameManager : MonoBehaviour {
         world.SetActive(true);
         // Sets BattleArea just in case of issue and disables
         battleArea = GameObject.Find("BattleMaster");
+        BM = GameObject.Find("BattleMaster").GetComponent<BattleManager>();
         battleArea.SetActive(false);
         // Sets Main Camera to active and disables any others
         worldCamera.SetActive(true);
@@ -90,6 +93,8 @@ public class GameManager : MonoBehaviour {
             debugCanvas.SetActive(false);
         }
         StartDebugCanvas(); // All GetComponent<Text> for debug
+        // Disables Battle Canvas
+        battleCanvas.SetActive(false);
 	}
 	
 	void Update ()
@@ -105,7 +110,7 @@ public class GameManager : MonoBehaviour {
         triggeredTile = tile;
         if (battleStartCount == 0)
         {
-            InvokeRepeating("CallRandomNumber", 1.5f, 1.25f);
+            InvokeRepeating("CallRandomNumber", 1, 1.25f);
             print("Invoke Repeating");
         }
 
@@ -127,21 +132,29 @@ public class GameManager : MonoBehaviour {
         if (randomNumber < tile.tilePercentage && battleStartCount == 0) // checks random number against the tiles percentage chance and if battle can be started
         {
             battleStartCount++;
-            StartBattle();
+            LoadBattle();
         }
     }
 
-    void StartBattle()
+    void LoadBattle() // Prep for Loading Battle
     {
         CancelInvoke("CallRandomNumber"); // stops calling the random number
         // Enabling Battle Area for Setup
         battleArea.SetActive(true);
 
-        // Deactivates the player and companion
-        player.SetActive(false); 
-        companion.SetActive(false);
+        // Switches Camera
+        worldCamera.SetActive(false);
+        battleCamera.SetActive(true);
+        // Stops the Player and companion, deactivates controllers along with colliders
+        player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+        player.GetComponent<CharacterController>().enabled = !enabled;
+        player.GetComponent<BoxCollider2D>().enabled = !enabled;
+        companion.GetComponent<CompanionController>().enabled = !enabled;
+        // Sets bool to true
         battleStarted = true;
 
-
+        // Last Step, Loads Up all Battle Varaibles
+        BM.StartBattle();
+        
     }
 }
