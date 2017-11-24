@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour {
     [Header("Player Variables")]
     public GameObject player;
     public GameObject companion;
+    public bool controllingCompanion;
+    public bool controllingPlayer;
 
     [Header("Cameras")]
     public GameObject worldCamera;
@@ -26,7 +28,7 @@ public class GameManager : MonoBehaviour {
     public GameObject world;
     public GameObject battleArea;
     public static GameManager instance;
-    public BattleManager BM;
+    private BattleManager BM; // link to the Battle Manager
 
     [Header("Battle Attributes")]
     public bool playerDetected; 
@@ -83,6 +85,9 @@ public class GameManager : MonoBehaviour {
         // Sets Player/Companion to Active and Disables Battle Player
         player.SetActive(true);
         companion.SetActive(true);
+        // Making sure player is controlling amelia not companion
+        controllingPlayer = true;
+        controllingCompanion = false;
         // Checking to see if Debug Canvas should be enabled or disabled for testing purposes
         if (enableDebug == true)
         {

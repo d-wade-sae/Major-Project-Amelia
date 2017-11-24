@@ -14,14 +14,16 @@ public class BattleManager : MonoBehaviour {
     public GameObject battlePlayer;
     public GameObject battleCompanion;
 
-    [Header("Battle Canvas")]
+    [Header("Battle Canvas Master")]
     public GameObject battleCanvas;
-    // Panels
+
+    [Header("Panels")]
     public GameObject actionsPanel;
     public GameObject enemySelectPanel;
     public GameObject skillsPanel;
     public GameObject heroPanel;
-    // Spacers
+
+    [Header("Spacers")]
     public Transform actionSpacer;
     public Transform buttonSpacer;
     public Transform skillSpacer;
