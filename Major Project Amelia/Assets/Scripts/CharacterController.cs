@@ -32,32 +32,29 @@ public class CharacterController : MonoBehaviour {
         movingDebug.text = "Player Moving: " + playerMoving.ToString();
         velocityDebug.text = "Player Velocity: " + playerBody.velocity.ToString();
 
-        if(GM.controllingPlayer == true)
+        if (Input.GetAxisRaw("Horizontal") > 0.5f || Input.GetAxisRaw("Horizontal") < -0.5f) //If player is moving left or right
         {
-            if (Input.GetAxisRaw("Horizontal") > 0.5f || Input.GetAxisRaw("Horizontal") < -0.5f) //If player is moving left or right
-            {
-                playerBody.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * moveSpeed, playerBody.velocity.y); // determines player velocity 
-                playerMoving = true; // sets the player to moving
-                movingDebug.text = "Player Moving: " + playerMoving.ToString();
-                lastMove = new Vector2(Input.GetAxisRaw("Horizontal"), 0f);
-            }
-            if (Input.GetAxisRaw("Vertical") > 0.5f || Input.GetAxisRaw("Vertical") < -0.5f) //If player is moving up or down
-            {
-                playerBody.velocity = new Vector2(playerBody.velocity.x, Input.GetAxisRaw("Vertical") * moveSpeed);
-                playerMoving = true; // sets the player to moving
-                movingDebug.text = "Player Moving: " + playerMoving.ToString();
-                lastMove = new Vector2(0f, Input.GetAxisRaw("Vertical"));
-            }
+            playerBody.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * moveSpeed, playerBody.velocity.y); // determines player velocity 
+            playerMoving = true; // sets the player to moving
+            movingDebug.text = "Player Moving: " + playerMoving.ToString();
+            lastMove = new Vector2(Input.GetAxisRaw("Horizontal"), 0f);
+        }
+        if (Input.GetAxisRaw("Vertical") > 0.5f || Input.GetAxisRaw("Vertical") < -0.5f) //If player is moving up or down
+        {
+            playerBody.velocity = new Vector2(playerBody.velocity.x, Input.GetAxisRaw("Vertical") * moveSpeed);
+            playerMoving = true; // sets the player to moving
+            movingDebug.text = "Player Moving: " + playerMoving.ToString();
+            lastMove = new Vector2(0f, Input.GetAxisRaw("Vertical"));
+        }
 
-            if (Input.GetAxisRaw("Horizontal") < 0.5f && Input.GetAxisRaw("Horizontal") > -0.5f) // if no input
-            {
-                playerBody.velocity = new Vector2(0f, playerBody.velocity.y); // sets the players velocity to 0
-            }
+        if (Input.GetAxisRaw("Horizontal") < 0.5f && Input.GetAxisRaw("Horizontal") > -0.5f) // if no input
+        {
+            playerBody.velocity = new Vector2(0f, playerBody.velocity.y); // sets the players velocity to 0
+        }
 
-            if (Input.GetAxisRaw("Vertical") < 0.5f && Input.GetAxisRaw("Vertical") > -0.5f) // if no input
-            {
-                playerBody.velocity = new Vector2(playerBody.velocity.x, 0f); // sets the players velocity to 0
-            }
+        if (Input.GetAxisRaw("Vertical") < 0.5f && Input.GetAxisRaw("Vertical") > -0.5f) // if no input
+        {
+            playerBody.velocity = new Vector2(playerBody.velocity.x, 0f); // sets the players velocity to 0
         }
     }
 }
