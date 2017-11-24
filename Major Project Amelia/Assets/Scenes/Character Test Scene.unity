@@ -461,26 +461,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114478011085377500, guid: 3ce6b0a24ae3c844ca08934e53f84378,
-        type: 2}
-      propertyPath: background
-      value: 
-      objectReference: {fileID: 1440223056}
-    - target: {fileID: 114478011085377500, guid: 3ce6b0a24ae3c844ca08934e53f84378,
-        type: 2}
-      propertyPath: battlePlayer
-      value: 
-      objectReference: {fileID: 195186812}
-    - target: {fileID: 114478011085377500, guid: 3ce6b0a24ae3c844ca08934e53f84378,
-        type: 2}
-      propertyPath: battleCompanion
-      value: 
-      objectReference: {fileID: 779437422}
-    - target: {fileID: 114478011085377500, guid: 3ce6b0a24ae3c844ca08934e53f84378,
-        type: 2}
-      propertyPath: battleCanvas
-      value: 
-      objectReference: {fileID: 965187066}
     - target: {fileID: 114588658899027162, guid: 3ce6b0a24ae3c844ca08934e53f84378,
         type: 2}
       propertyPath: player
@@ -536,8 +516,7 @@ Prefab:
       propertyPath: battleArea
       value: 
       objectReference: {fileID: 1796206278}
-    m_RemovedComponents:
-    - {fileID: 114478011085377500, guid: 3ce6b0a24ae3c844ca08934e53f84378, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3ce6b0a24ae3c844ca08934e53f84378, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &616285147
@@ -1395,7 +1374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f108f7a0f4fd354d85798e62ff15c3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 1621152516}
 --- !u!1001 &1237866792
 Prefab:
   m_ObjectHideFlags: 0

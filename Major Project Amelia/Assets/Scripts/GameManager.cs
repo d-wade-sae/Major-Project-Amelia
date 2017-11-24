@@ -68,6 +68,9 @@ public class GameManager : MonoBehaviour {
             companionSpawn.transform.position = companionSpawnPoint;
             companionSpawn.name = "HopeCompanion";
         }
+
+        // Sets Camera Target to player
+        worldCamera.GetComponent<CameraController>().target = player;
     }
 
     void Start ()
@@ -90,8 +93,6 @@ public class GameManager : MonoBehaviour {
         controllingCompanion = false;
         player.GetComponent<CharacterController>().enabled = enabled;
         companion.GetComponent<CharacterController>().enabled = !enabled;
-        // Sets Camera Target to player
-        worldCamera.GetComponent<CameraController>().target = player;
         // Checking to see if Debug Canvas should be enabled or disabled for testing purposes
         if (enableDebug == true)
         {
@@ -176,6 +177,7 @@ public class GameManager : MonoBehaviour {
             // switches camera target to Hope
             controller.target = companion;
             companion.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+            player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
             player.GetComponent<CharacterController>().enabled = !enabled;
             // disables companion controller and enables character controller
             companion.GetComponent<CompanionController>().enabled = !enabled;
@@ -190,6 +192,7 @@ public class GameManager : MonoBehaviour {
         {
             // switches camera target to Amelia
             controller.target = player;
+            player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
             companion.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
             player.GetComponent<CharacterController>().enabled = enabled;
             // disables character controller and enables companion controller
