@@ -66,12 +66,12 @@ public class GameManager : MonoBehaviour {
 
         WS = WorldState.SETUP; // sets the world state to setup
 
-        if (!GameObject.Find("Player"))
+        if (!GameObject.Find("Amelia"))
         {
             GameObject PlayerSpawn = Instantiate(player, Vector2.zero, Quaternion.identity) as GameObject;
             Vector2 playerSpawnLocation = new Vector2(0, 0);
             PlayerSpawn.transform.position = playerSpawnLocation;
-            PlayerSpawn.name = "Player";
+            PlayerSpawn.name = "Amelia";
         }
 
         if (!GameObject.Find("HopeCompanion"))
@@ -127,6 +127,11 @@ public class GameManager : MonoBehaviour {
         debugDetected.text = "Player Detected: " + playerDetected.ToString();
         randomNumberDebug.text = "Random Number: " + randomNumber.ToString();
         battleStartedDebug.text = "Battle Started: " + battleStarted.ToString();
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            SwitchCameraTarget();
+        }
 
         // WorldState
         switch(WS)
@@ -206,7 +211,8 @@ public class GameManager : MonoBehaviour {
         companion.GetComponent<CompanionController>().enabled = !enabled;
         // Sets bool to true
         battleStarted = true;
-
+        // Sets the World State to Battle
+        WS = WorldState.BATTLE;
         // Last Step, Loads Up all Battle Varaibles
         BM.StartBattle();
         

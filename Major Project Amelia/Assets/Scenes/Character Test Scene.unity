@@ -264,6 +264,58 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224144983403990198, guid: f3ac2aaaace4e224cbba3f5bb3bec8cf,
     type: 2}
   m_PrefabInternal: {fileID: 545156692}
+--- !u!1001 &159611732
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 195186813}
+    m_Modifications:
+    - target: {fileID: 4992390273256504, guid: 00c7dae896a39b140b123bba2521f0fa, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4992390273256504, guid: 00c7dae896a39b140b123bba2521f0fa, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4992390273256504, guid: 00c7dae896a39b140b123bba2521f0fa, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4992390273256504, guid: 00c7dae896a39b140b123bba2521f0fa, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4992390273256504, guid: 00c7dae896a39b140b123bba2521f0fa, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4992390273256504, guid: 00c7dae896a39b140b123bba2521f0fa, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4992390273256504, guid: 00c7dae896a39b140b123bba2521f0fa, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4992390273256504, guid: 00c7dae896a39b140b123bba2521f0fa, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 00c7dae896a39b140b123bba2521f0fa, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1 &159611733 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1962995124672906, guid: 00c7dae896a39b140b123bba2521f0fa,
+    type: 2}
+  m_PrefabInternal: {fileID: 159611732}
+--- !u!4 &159611734 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4992390273256504, guid: 00c7dae896a39b140b123bba2521f0fa,
+    type: 2}
+  m_PrefabInternal: {fileID: 159611732}
 --- !u!1 &195186812
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,8 +325,9 @@ GameObject:
   m_Component:
   - component: {fileID: 195186813}
   - component: {fileID: 195186814}
+  - component: {fileID: 195186815}
   m_Layer: 0
-  m_Name: BattlePlayer
+  m_Name: AmeliaBattle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -289,7 +342,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
-  m_Children: []
+  m_Children:
+  - {fileID: 159611734}
   m_Father: {fileID: 1726150957}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -333,6 +387,39 @@ SpriteRenderer:
   m_Size: {x: 8.96, y: 8.96}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+--- !u!114 &195186815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 195186812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46c9a310c7b529a4d8f4f5aaf1cc6735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hero:
+    theName: Amelia
+    baseHP: 15
+    currentHP: 0
+    baseAttack: 3
+    currentAttack: 0
+    baseDefence: 3
+    currentDefence: 0
+    baseStamina: 3
+    currentStamina: 0
+    agility: 0
+    attacks: []
+    heroLevel: 0
+    heroXP: 0
+    Skills: []
+  battlePlayer: 1
+  characterWorld: {fileID: 1621152516}
+  playerTurn: 0
+  currentState: 0
+  selector: {fileID: 159611733}
+  enemyToAttack: {fileID: 0}
+  alive: 1
 --- !u!1 &228463257
 GameObject:
   m_ObjectHideFlags: 0
@@ -936,7 +1023,7 @@ Prefab:
     - target: {fileID: 224144983403990198, guid: f3ac2aaaace4e224cbba3f5bb3bec8cf,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -55
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224144983403990198, guid: f3ac2aaaace4e224cbba3f5bb3bec8cf,
         type: 2}
@@ -1314,8 +1401,9 @@ GameObject:
   m_Component:
   - component: {fileID: 779437424}
   - component: {fileID: 779437423}
+  - component: {fileID: 779437425}
   m_Layer: 0
-  m_Name: BattleCompanion
+  m_Name: HopeBattle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1370,10 +1458,44 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1233520206}
   m_Father: {fileID: 1550667367}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &779437425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 779437422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46c9a310c7b529a4d8f4f5aaf1cc6735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hero:
+    theName: Hope
+    baseHP: 5
+    currentHP: 0
+    baseAttack: 3
+    currentAttack: 0
+    baseDefence: 3
+    currentDefence: 0
+    baseStamina: 3
+    currentStamina: 0
+    agility: 3
+    attacks: []
+    heroLevel: 0
+    heroXP: 0
+    Skills: []
+  battlePlayer: 0
+  characterWorld: {fileID: 0}
+  playerTurn: 0
+  currentState: 0
+  selector: {fileID: 1290632708}
+  enemyToAttack: {fileID: 0}
+  alive: 1
 --- !u!1 &797973226
 GameObject:
   m_ObjectHideFlags: 0
@@ -2343,6 +2465,53 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1219443812}
+--- !u!1001 &1233520205
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 779437424}
+    m_Modifications:
+    - target: {fileID: 4992390273256504, guid: 00c7dae896a39b140b123bba2521f0fa, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4992390273256504, guid: 00c7dae896a39b140b123bba2521f0fa, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4992390273256504, guid: 00c7dae896a39b140b123bba2521f0fa, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4992390273256504, guid: 00c7dae896a39b140b123bba2521f0fa, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4992390273256504, guid: 00c7dae896a39b140b123bba2521f0fa, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4992390273256504, guid: 00c7dae896a39b140b123bba2521f0fa, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4992390273256504, guid: 00c7dae896a39b140b123bba2521f0fa, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4992390273256504, guid: 00c7dae896a39b140b123bba2521f0fa, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 00c7dae896a39b140b123bba2521f0fa, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &1233520206 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4992390273256504, guid: 00c7dae896a39b140b123bba2521f0fa,
+    type: 2}
+  m_PrefabInternal: {fileID: 1233520205}
 --- !u!1001 &1237866792
 Prefab:
   m_ObjectHideFlags: 0
@@ -2392,6 +2561,10 @@ Prefab:
       propertyPath: velocityDebug
       value: 
       objectReference: {fileID: 1622201293}
+    - target: {fileID: 1444716142984064, guid: 3a1f29f32d8fbfa43b77b95845234ace, type: 2}
+      propertyPath: m_Name
+      value: Amelia
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3a1f29f32d8fbfa43b77b95845234ace, type: 2}
   m_IsPrefabParent: 0
@@ -2484,6 +2657,11 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1250959580}
+--- !u!1 &1290632708 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1962995124672906, guid: 00c7dae896a39b140b123bba2521f0fa,
+    type: 2}
+  m_PrefabInternal: {fileID: 1233520205}
 --- !u!1 &1367283634
 GameObject:
   m_ObjectHideFlags: 0
@@ -3009,13 +3187,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1444716142984064, guid: 3a1f29f32d8fbfa43b77b95845234ace,
     type: 2}
   m_PrefabInternal: {fileID: 1237866792}
---- !u!81 &1621152522
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1621152516}
-  m_Enabled: 1
 --- !u!1 &1622201290
 GameObject:
   m_ObjectHideFlags: 0
@@ -3281,6 +3452,8 @@ MonoBehaviour:
   actionSpacer: {fileID: 17936134}
   enemySelectSpacer: {fileID: 246550866}
   skillSpacer: {fileID: 835215478}
+  battleStates: 0
+  HeroInput: 0
 --- !u!1 &1874516360
 GameObject:
   m_ObjectHideFlags: 0
@@ -3796,6 +3969,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2073756391}
   - component: {fileID: 2073756392}
+  - component: {fileID: 2073756393}
   m_Layer: 0
   m_Name: Enemy1
   m_TagString: Untagged
@@ -3856,6 +4030,37 @@ SpriteRenderer:
   m_Size: {x: 1.25, y: 1.25}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+--- !u!114 &2073756393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2073756390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 487eb3110795a42458941f68529b7147, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy:
+    theName: 
+    baseHP: 0
+    currentHP: 0
+    baseAttack: 0
+    currentAttack: 0
+    baseDefence: 0
+    currentDefence: 0
+    baseStamina: 0
+    currentStamina: 0
+    agility: 0
+    attacks: []
+    enemyType: 0
+    rarity: 0
+    enemyExperience: 0
+  enableDebugLines: 0
+  enemyTurn: 0
+  selector: {fileID: 0}
+  currentState: 0
+  HeroToAttack: {fileID: 0}
 --- !u!114 &2098676058 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114588658899027162, guid: 3ce6b0a24ae3c844ca08934e53f84378,

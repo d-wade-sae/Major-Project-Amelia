@@ -34,8 +34,32 @@ public class BattleManager : MonoBehaviour {
     public Transform enemySelectSpacer;
     public Transform skillSpacer;
 
+    [Header("States")]
+    public PerformAction battleStates;
+    public HeroGUI HeroInput;
 
-	void Start ()
+    public enum PerformAction
+    {
+        WAIT,
+        TAKEACTION,
+        PERFORMACTION,
+        CHECKALIVE,
+        WIN,
+        LOSE,
+        RESET
+    }
+
+    public enum HeroGUI
+    {
+        ACTIVATE,
+        WAITING,
+        INPUT1,
+        INPUT2,
+        DONE,
+        RESET
+    }
+
+    void Start ()
     {
         GM = GameObject.Find("_GameManager").GetComponent<GameManager>();
 	}
@@ -53,7 +77,15 @@ public class BattleManager : MonoBehaviour {
         battleCompanion.SetActive(true);
         // Enables Battle Canvas
         battleCanvas.SetActive(true);
-        // Disables any Selection Panel but the action panel
+        // Enables all panels for spawning of buttons
+        actionsPanel.SetActive(true);
+        enemySelectPanel.SetActive(true);
+        skillsPanel.SetActive(true);
+        
+    }
 
+    void SpawnEnemies()
+    {
+        
     }
 }
