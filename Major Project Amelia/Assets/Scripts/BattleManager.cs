@@ -17,6 +17,12 @@ public class BattleManager : MonoBehaviour {
     [Header("Battle Canvas Master")]
     public GameObject battleCanvas;
 
+    [Header("Prefabs")]
+    // Button Prefabs
+    public GameObject actionButton;
+    public GameObject enemyButton;
+    public GameObject skillButton;
+
     [Header("Panels")]
     public GameObject actionsPanel;
     public GameObject enemySelectPanel;
@@ -25,7 +31,7 @@ public class BattleManager : MonoBehaviour {
 
     [Header("Spacers")]
     public Transform actionSpacer;
-    public Transform buttonSpacer;
+    public Transform enemySelectSpacer;
     public Transform skillSpacer;
 
 
@@ -47,5 +53,7 @@ public class BattleManager : MonoBehaviour {
         battleCompanion.SetActive(true);
         // Enables Battle Canvas
         battleCanvas.SetActive(true);
+        // Disables any Selection Panel but the action panel
+
     }
 }

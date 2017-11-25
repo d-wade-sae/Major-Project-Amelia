@@ -30,11 +30,22 @@ public class GameManager : MonoBehaviour {
     public static GameManager instance;
     private BattleManager BM; // link to the Battle Manager
 
+    // World State (links in with battle states)
+    public enum WorldState
+    {
+        SETUP,
+        WOLRD,
+        CUTSCENE,
+        PAUSE,
+        BATTLE,
+        DEATH
+    }
+    public WorldState WS;
+
     [Header("Battle Attributes")]
     public bool playerDetected; 
     public bool battleStarted;
     public int randomNumber;
-    public int battleStartCount;
     private GameObject triggeredTile;
     
 
@@ -52,6 +63,8 @@ public class GameManager : MonoBehaviour {
         }
 
         DontDestroyOnLoad(gameObject);
+
+        WS = WorldState.SETUP; // sets the world state to setup
 
         if (!GameObject.Find("Player"))
         {
@@ -105,6 +118,8 @@ public class GameManager : MonoBehaviour {
         StartDebugCanvas(); // All GetComponent<Text> for debug
         // Disables Battle Canvas
         battleCanvas.SetActive(false);
+
+        WS = WorldState.WOLRD; // sets WorldState to World
 	}
 	
 	void Update ()
@@ -112,13 +127,43 @@ public class GameManager : MonoBehaviour {
         debugDetected.text = "Player Detected: " + playerDetected.ToString();
         randomNumberDebug.text = "Random Number: " + randomNumber.ToString();
         battleStartedDebug.text = "Battle Started: " + battleStarted.ToString();
+
+        // WorldState
+        switch(WS)
+        {
+            case (WorldState.SETUP):
+
+            break;
+
+            case (WorldState.WOLRD):
+
+            break;
+
+            case (WorldState.CUTSCENE):
+
+            break;
+
+            case (WorldState.PAUSE):
+
+            break;
+
+            case (WorldState.BATTLE):
+
+            break;
+
+            case (WorldState.DEATH):
+
+            break;
+
+        }
 	}
 
-    public void PlayerDetected (GameObject tile)
+    public void PlayerDetected (GameObject tile) // Takes tile data from triggered tile and starts checking to see if battle is called
     {
         playerDetected = true;
         triggeredTile = tile;
-        if (battleStartCount == 0)
+        // Checks to see if battle has been 
+        if (battleStarted == false)
         {
             InvokeRepeating("CallRandomNumber", 1, 1.25f);
             print("Invoke Repeating");
@@ -139,9 +184,8 @@ public class GameManager : MonoBehaviour {
         randomNumber = Random.Range(0, 100);
         print("Random Number: " + randomNumber);
 
-        if (randomNumber < tile.tilePercentage && battleStartCount == 0) // checks random number against the tiles percentage chance and if battle can be started
+        if (randomNumber < tile.tilePercentage && battleStarted == false) // checks random number against the tiles percentage chance and if battle can be started
         {
-            battleStartCount++;
             LoadBattle();
         }
     }
