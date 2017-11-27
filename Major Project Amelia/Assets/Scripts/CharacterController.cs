@@ -14,6 +14,7 @@ public class CharacterController : MonoBehaviour {
     private Rigidbody2D playerBody;
     private bool playerMoving; // if player is moving
     private Vector2 lastMove;
+    private Animator characterAnim; // referencing the player animator
 
     private GameManager GM; // link to game manager
 
@@ -24,6 +25,7 @@ public class CharacterController : MonoBehaviour {
         movingDebug.GetComponent<Text>();
         velocityDebug.GetComponent<Text>();
         GM = GameObject.Find("_GameManager").GetComponent<GameManager>();
+        characterAnim = GetComponent<Animator>();
     }
 	
 	void Update ()
@@ -56,5 +58,16 @@ public class CharacterController : MonoBehaviour {
         {
             playerBody.velocity = new Vector2(playerBody.velocity.x, 0f); // sets the players velocity to 0
         }
+
+        characterAnim.SetFloat("Move X", Input.GetAxisRaw("Horizontal"));
+        characterAnim.SetFloat("Move Y", Input.GetAxisRaw("Vertical"));
+        //checks the Animator to instantiate the corresponding sprite/animation for the following axis
+        characterAnim.SetBool("Player Moving", playerMoving);
+        characterAnim.SetFloat("Last Move X", lastMove.x);
+        //sets the conditions of the animators parameters to either true or false on the X axis
+        characterAnim.SetFloat("Last Move Y", lastMove.y);
+        //sets the conditions of the animators parameters to either true or false on the Y axis
+
+        //TIP FOR ANIMATOR: We need to make sure to turn off 'Has Exit Time'and 'Fixed Durations'
     }
 }
