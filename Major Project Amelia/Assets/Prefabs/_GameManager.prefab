@@ -57,6 +57,7 @@ MonoBehaviour:
   controllingPlayer: 0
   worldCamera: {fileID: 0}
   battleCamera: {fileID: 0}
+  switchButton: {fileID: 0}
   enableDebug: 1
   debugCanvas: {fileID: 0}
   battleCanvas: {fileID: 0}
@@ -65,7 +66,7 @@ MonoBehaviour:
   battleStartedDebug: {fileID: 0}
   world: {fileID: 0}
   battleArea: {fileID: 0}
+  WS: 0
   playerDetected: 0
   battleStarted: 0
   randomNumber: 0
-  battleStartCount: 0

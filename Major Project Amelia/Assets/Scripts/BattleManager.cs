@@ -8,6 +8,7 @@ public class BattleManager : MonoBehaviour {
     private GameManager GM;
 
     [Header("Battle Attributes")]
+    public static BattleManager instance;
     public GameObject background;
 
     [Header("Player Objects")]
@@ -57,6 +58,21 @@ public class BattleManager : MonoBehaviour {
         INPUT2,
         DONE,
         RESET
+    }
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+
+        DontDestroyOnLoad(gameObject);
     }
 
     void Start ()

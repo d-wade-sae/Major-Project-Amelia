@@ -19,10 +19,11 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4403608610240572}
+  - component: {fileID: 114892813924840798}
+  - component: {fileID: 114567180465252128}
   - component: {fileID: 212377274179959552}
   - component: {fileID: 50326909232572630}
-  - component: {fileID: 114567180465252128}
-  - component: {fileID: 114892813924840798}
+  - component: {fileID: 95624454492985606}
   m_Layer: 0
   m_Name: HopeCompanion
   m_TagString: Companion
@@ -63,6 +64,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!95 &95624454492985606
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1908118770718674}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114567180465252128
 MonoBehaviour:
   m_ObjectHideFlags: 1

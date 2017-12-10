@@ -10,10 +10,12 @@ public class GameManager : MonoBehaviour {
     public GameObject companion;
     public bool controllingCompanion;
     public bool controllingPlayer;
+    public float companionDistance;
 
     [Header("Cameras")]
     public GameObject worldCamera;
     public GameObject battleCamera;
+    public GameObject switchButton;
 
     [Header("Canvas")]
     // Debug Canvas Variables
@@ -23,6 +25,7 @@ public class GameManager : MonoBehaviour {
     public Text debugDetected;
     public Text randomNumberDebug;
     public Text battleStartedDebug;
+    public Text distanceDebug;
 
     [Header("World Variables")]
     public GameObject world;
@@ -47,8 +50,6 @@ public class GameManager : MonoBehaviour {
     public bool battleStarted;
     public int randomNumber;
     private GameObject triggeredTile;
-    
-
 
     void Awake()
     {
@@ -93,7 +94,7 @@ public class GameManager : MonoBehaviour {
         world.SetActive(true);
         // Sets BattleArea just in case of issue and disables
         battleArea = GameObject.Find("BattleMaster");
-        BM = GameObject.Find("BattleMaster").GetComponent<BattleManager>();
+        BM = GameObject.Find("_BattleManager").GetComponent<BattleManager>();
         battleArea.SetActive(false);
         // Sets Main Camera to active and disables any others
         worldCamera.SetActive(true);
@@ -130,7 +131,7 @@ public class GameManager : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.C))
         {
-            SwitchCameraTarget();
+            if (battleStarted == false) SwitchCameraTarget();
         }
 
         // WorldState
@@ -142,7 +143,15 @@ public class GameManager : MonoBehaviour {
 
             case (WorldState.WOLRD):
 
-            break;
+                // Activates the Camera switch button in debug canvas
+                switchButton.SetActive(true);
+
+                // measures the distance between the player and the companion
+                companionDistance = Vector3.Distance(companion.transform.position, player.transform.position);
+                companionDistance -= 1.118034f; 
+                distanceDebug.text = "Companion Distance: " + companionDistance.ToString();
+
+                break;
 
             case (WorldState.CUTSCENE):
 
@@ -154,7 +163,10 @@ public class GameManager : MonoBehaviour {
 
             case (WorldState.BATTLE):
 
-            break;
+                // Deactivates the camera switch button in debug canvas
+                switchButton.SetActive(false);
+
+                break;
 
             case (WorldState.DEATH):
 
@@ -181,6 +193,7 @@ public class GameManager : MonoBehaviour {
         debugDetected.GetComponent<Text>();
         randomNumberDebug.GetComponent<Text>();
         battleStartedDebug.GetComponent<Text>();
+        distanceDebug.GetComponent<Text>();
     }
 
     void CallRandomNumber () // Calls Random Number and runs it against the 
@@ -213,7 +226,7 @@ public class GameManager : MonoBehaviour {
         battleStarted = true;
         // Sets the World State to Battle
         WS = WorldState.BATTLE;
-        // Last Step, Loads Up all Battle Varaibles
+        // Last Step, Switches Control to the Battle Manager and Loads all Battle Variables
         BM.StartBattle();
         
     }
