@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -31,10 +32,14 @@ public class GameManager : MonoBehaviour {
     public GameObject world;
     public GameObject battleArea;
     public static GameManager instance;
+    public string testScene;
+    public string mainScene;
+    // Private World Variables
     private BattleManager BM; // link to the Battle Manager
+    private bool gamePaused = false;
 
     // World State (links in with battle states)
-    public enum WorldState
+    public enum GameState
     {
         SETUP,
         WOLRD,
@@ -43,7 +48,7 @@ public class GameManager : MonoBehaviour {
         BATTLE,
         DEATH
     }
-    public WorldState WS;
+    public GameState GS;
 
     [Header("Battle Attributes")]
     public bool playerDetected; 
@@ -65,7 +70,7 @@ public class GameManager : MonoBehaviour {
 
         DontDestroyOnLoad(gameObject);
 
-        WS = WorldState.SETUP; // sets the world state to setup
+        GS = GameState.SETUP; // sets the world state to setup
 
         if (!GameObject.Find("Amelia"))
         {
@@ -120,28 +125,26 @@ public class GameManager : MonoBehaviour {
         // Disables Battle Canvas
         battleCanvas.SetActive(false);
 
-        WS = WorldState.WOLRD; // sets WorldState to World
+        GS = GameState.WOLRD; // sets GameState to World
 	}
 	
 	void Update ()
     {
-        debugDetected.text = "Player Detected: " + playerDetected.ToString();
-        randomNumberDebug.text = "Random Number: " + randomNumber.ToString();
-        battleStartedDebug.text = "Battle Started: " + battleStarted.ToString();
 
+        // Switching between player and companion via Key
         if (Input.GetKeyDown(KeyCode.C))
         {
             if (battleStarted == false) SwitchCameraTarget();
         }
 
-        // WorldState
-        switch(WS)
+        // GameState
+        switch (GS)
         {
-            case (WorldState.SETUP):
+            case (GameState.SETUP):
 
             break;
 
-            case (WorldState.WOLRD):
+            case (GameState.WOLRD):
 
                 // Activates the Camera switch button in debug canvas
                 switchButton.SetActive(true);
@@ -149,31 +152,45 @@ public class GameManager : MonoBehaviour {
                 // measures the distance between the player and the companion
                 companionDistance = Vector3.Distance(companion.transform.position, player.transform.position);
                 companionDistance -= 1.118034f; 
-                distanceDebug.text = "Companion Distance: " + companionDistance.ToString();
+                if (debugCanvas == true) distanceDebug.text = "Companion Distance: " + companionDistance.ToString(); // sends it to debug canvas is true
 
                 break;
 
-            case (WorldState.CUTSCENE):
+            case (GameState.CUTSCENE):
 
             break;
 
-            case (WorldState.PAUSE):
+            case (GameState.PAUSE): // If Gamestate is pause, then pauses game
+
+                gamePaused = true;
+                Time.timeScale = 0;
 
             break;
 
-            case (WorldState.BATTLE):
+            case (GameState.BATTLE):
 
                 // Deactivates the camera switch button in debug canvas
                 switchButton.SetActive(false);
 
                 break;
 
-            case (WorldState.DEATH):
+            case (GameState.DEATH):
 
             break;
-
+        }
+    
+        if (debugCanvas == true) // Updates Debug Canvas if it is enabled
+        {
+            UpdateDebug();
         }
 	}
+
+    void UpdateDebug() // Updates Debug Canvas 
+    {
+        debugDetected.text = "Player Detected: " + playerDetected.ToString();
+        randomNumberDebug.text = "Random Number: " + randomNumber.ToString();
+        battleStartedDebug.text = "Battle Started: " + battleStarted.ToString();
+    }
 
     public void PlayerDetected (GameObject tile) // Takes tile data from triggered tile and starts checking to see if battle is called
     {
@@ -225,7 +242,7 @@ public class GameManager : MonoBehaviour {
         // Sets bool to true
         battleStarted = true;
         // Sets the World State to Battle
-        WS = WorldState.BATTLE;
+        GS = GameState.BATTLE;
         // Last Step, Switches Control to the Battle Manager and Loads all Battle Variables
         BM.StartBattle();
         

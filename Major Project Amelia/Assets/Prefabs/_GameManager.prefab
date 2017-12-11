@@ -55,6 +55,7 @@ MonoBehaviour:
   companion: {fileID: 0}
   controllingCompanion: 0
   controllingPlayer: 0
+  companionDistance: 0
   worldCamera: {fileID: 0}
   battleCamera: {fileID: 0}
   switchButton: {fileID: 0}
@@ -64,8 +65,11 @@ MonoBehaviour:
   debugDetected: {fileID: 0}
   randomNumberDebug: {fileID: 0}
   battleStartedDebug: {fileID: 0}
+  distanceDebug: {fileID: 0}
   world: {fileID: 0}
   battleArea: {fileID: 0}
+  testScene: test
+  mainScene: Character Test Scene
   WS: 0
   playerDetected: 0
   battleStarted: 0
