@@ -39,7 +39,7 @@ public class BattleManager : MonoBehaviour {
     public PerformAction battleStates;
     public HeroGUI HeroInput;
 
-    public enum PerformAction
+    public enum PerformAction // Manages the Battle States and wether anything is performing an action
     {
         WAIT,
         TAKEACTION,
@@ -50,7 +50,7 @@ public class BattleManager : MonoBehaviour {
         RESET
     }
 
-    public enum HeroGUI
+    public enum HeroGUI // Responsible for Hero Turns
     {
         ACTIVATE,
         WAITING,
@@ -59,6 +59,20 @@ public class BattleManager : MonoBehaviour {
         DONE,
         RESET
     }
+
+    [Header("Lists")]
+    public List<TurnBasedHandler> PerformList = new List<TurnBasedHandler>(); // List that handles whos turn it is to perform an action
+    public List<GameObject> HerosInGame = new List<GameObject>(); // List that handles which heros are in game
+    public List<GameObject> EnemiesInBattle = new List<GameObject>(); // List that handles which enemies are in game
+    public List<GameObject> HerosToManage = new List<GameObject>(); //  List that is responsible for which hero turn it is
+    public List<GameObject> EnemiesToManage = new List<GameObject>(); // list that is responsible for which enemies need turns
+    public List<GameObject> DeadEnemies = new List<GameObject>(); // list of dead enemies (only used for 2 or more enemies)
+    
+    // Private Lists
+    // List for Attack Buttons
+    private List<GameObject> attackButtons = new List<GameObject>();
+    // List for Enemy Buttons
+    private List<GameObject> enemyButtons = new List<GameObject>();
 
     void Awake()
     {

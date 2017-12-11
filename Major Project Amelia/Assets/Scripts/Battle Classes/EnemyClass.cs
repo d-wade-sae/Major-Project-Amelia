@@ -7,6 +7,7 @@ using UnityEngine.UI;
 [System.Serializable]
 public class BaseEnemy : BaseClass
 {
+    /*
     public enum Type
     {
         PIG,
@@ -15,6 +16,7 @@ public class BaseEnemy : BaseClass
         CENTIPEDE,
         BAT
     }
+    */
 
     public enum Rarity
     {
@@ -24,7 +26,7 @@ public class BaseEnemy : BaseClass
         SUPERRARE
     }
 
-    public Type enemyType;
+    // public Type enemyType;
     public Rarity rarity;
 
     public int enemyExperience;
