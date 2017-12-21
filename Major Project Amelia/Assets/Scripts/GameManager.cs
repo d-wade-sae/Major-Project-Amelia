@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour {
     public string testScene;
     public string mainScene;
     // Private World Variables
-    private BattleManager BM; // link to the Battle Manager
+    // private BattleManager BM; // link to the Battle Manager
     private bool gamePaused = false;
 
     // World State (links in with battle states)
@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour {
         world.SetActive(true);
         // Sets BattleArea just in case of issue and disables
         battleArea = GameObject.Find("BattleMaster");
-        BM = GameObject.Find("_BattleManager").GetComponent<BattleManager>();
+        // BM = GameObject.Find("_BattleManager").GetComponent<BattleManager>();
         battleArea.SetActive(false);
         // Sets Main Camera to active and disables any others
         worldCamera.SetActive(true);
@@ -244,7 +244,7 @@ public class GameManager : MonoBehaviour {
         // Sets the World State to Battle
         GS = GameState.BATTLE;
         // Last Step, Switches Control to the Battle Manager and Loads all Battle Variables
-        BM.StartBattle();
+        // BM.StartBattle();
         
     }
 
