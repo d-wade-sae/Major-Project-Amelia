@@ -122,7 +122,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &11967911
 Transform:
   m_ObjectHideFlags: 0
@@ -332,7 +332,7 @@ GameObject:
   - component: {fileID: 195186815}
   m_Layer: 0
   m_Name: AmeliaBattle
-  m_TagString: Untagged
+  m_TagString: Hero
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1089,7 +1089,7 @@ Prefab:
     - target: {fileID: 224144983403990198, guid: f3ac2aaaace4e224cbba3f5bb3bec8cf,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -55
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224144983403990198, guid: f3ac2aaaace4e224cbba3f5bb3bec8cf,
         type: 2}
@@ -1470,7 +1470,7 @@ GameObject:
   - component: {fileID: 779437425}
   m_Layer: 0
   m_Name: HopeBattle
-  m_TagString: Untagged
+  m_TagString: Hero
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2855,6 +2855,29 @@ Prefab:
       propertyPath: skillSpacer
       value: 
       objectReference: {fileID: 835215478}
+    - target: {fileID: 114691308535425428, guid: ff0db9ce538dfc449af858371abe8605,
+        type: 2}
+      propertyPath: enableDebugLines
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114691308535425428, guid: ff0db9ce538dfc449af858371abe8605,
+        type: 2}
+      propertyPath: actionButton
+      value: 
+      objectReference: {fileID: 1946632970261240, guid: 837ce420f54786c4f989124a149caff3,
+        type: 2}
+    - target: {fileID: 114691308535425428, guid: ff0db9ce538dfc449af858371abe8605,
+        type: 2}
+      propertyPath: enemyButton
+      value: 
+      objectReference: {fileID: 1391073912208488, guid: d1f39e34ca2bfa84e90d6c024e7e3154,
+        type: 2}
+    - target: {fileID: 114691308535425428, guid: ff0db9ce538dfc449af858371abe8605,
+        type: 2}
+      propertyPath: skillButton
+      value: 
+      objectReference: {fileID: 1577211797775300, guid: 3cdb0564aeb80ed4f9577f0c26e7b1e6,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff0db9ce538dfc449af858371abe8605, type: 2}
   m_IsPrefabParent: 0
@@ -4141,7 +4164,7 @@ GameObject:
   - component: {fileID: 2073756393}
   m_Layer: 0
   m_Name: Enemy1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

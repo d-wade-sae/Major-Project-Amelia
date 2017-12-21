@@ -126,6 +126,7 @@ public class GameManager : MonoBehaviour {
         battleCanvas.SetActive(false);
 
         GS = GameState.WOLRD; // sets GameState to World
+        BM.battleStates = BattleManager.PerformAction.STANDBY;
 	}
 	
 	void Update ()
