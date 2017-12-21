@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Debug
   - Companion
+  - Enemy
+  - Hero
   layers:
   - Default
   - TransparentFX
