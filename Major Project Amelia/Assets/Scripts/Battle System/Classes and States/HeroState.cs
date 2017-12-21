@@ -6,13 +6,14 @@ using UnityEngine.UI;
 public class HeroState : MonoBehaviour {
 
     public BaseHero hero;
-    
+
+    private BattleManager BM;
+
     public enum TurnState
     {
         PROCESSING,
         ADDTOLIST,
         WAITING,
-        SELECTING,
         ACTION,
         DEAD
     }
@@ -22,11 +23,18 @@ public class HeroState : MonoBehaviour {
     // For the Progress Bar during Prototyping *yawn*
     private float cur_cooldown = 0f;
     private float max_cooldown = 1.5f;
-    
-	void Start ()
+
+    // Attack Variables
+    private Vector3 startPosition; // Start Position for moving
+    private bool actionStarted = false;
+    public GameObject EnemyToAttack;
+    private float animSpeed = 10f;
+
+    void Start ()
     {
-		
-	}
+        BM = GameObject.Find("_BattleManager").GetComponent<BattleManager>();
+        startPosition = transform.position;
+    }
 	
 	void Update ()
     {
@@ -40,14 +48,11 @@ public class HeroState : MonoBehaviour {
                 break;
 
             case (TurnState.ADDTOLIST):
-
+                BM.HerosToManage.Add(this.gameObject);
+                currentState = TurnState.WAITING;
                 break;
                 
             case (TurnState.WAITING):
-
-                break;
-
-            case (TurnState.SELECTING):
 
                 break;
 

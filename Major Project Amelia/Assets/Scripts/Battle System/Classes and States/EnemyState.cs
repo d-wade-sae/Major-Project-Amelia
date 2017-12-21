@@ -9,7 +9,6 @@ public class EnemyState : MonoBehaviour {
     private BattleManager BM;
 
     // Attack Variables
-    // Time for Action Variables
     private Vector3 startPosition; // Start Position for moving
     private bool actionStarted = false;
     public GameObject HeroToAttack;
