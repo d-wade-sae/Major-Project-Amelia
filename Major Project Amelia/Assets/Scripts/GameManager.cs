@@ -15,14 +15,13 @@ public class GameManager : MonoBehaviour {
 
     [Header("Cameras")]
     public GameObject worldCamera;
-    public GameObject battleCamera;
     public GameObject switchButton;
 
     [Header("Canvas")]
     // Debug Canvas Variables
     public bool enableDebug;
     public GameObject debugCanvas;
-    public GameObject battleCanvas;
+    // public GameObject battleCanvas;
     public Text debugDetected;
     public Text randomNumberDebug;
     public Text battleStartedDebug;
@@ -30,10 +29,9 @@ public class GameManager : MonoBehaviour {
 
     [Header("World Variables")]
     public GameObject world;
-    public GameObject battleArea;
+    // Obsolete public GameObject battleArea;
     public static GameManager instance;
-    public string testScene;
-    public string mainScene;
+    public string battleScene;
     // Private World Variables
     // private BattleManager BM; // link to the Battle Manager
     private bool gamePaused = false;
@@ -58,6 +56,7 @@ public class GameManager : MonoBehaviour {
 
     void Awake()
     {
+
         if (instance == null)
         {
             instance = this;
@@ -68,7 +67,7 @@ public class GameManager : MonoBehaviour {
             Destroy(gameObject);
         }
 
-        DontDestroyOnLoad(gameObject);
+        // DontDestroyOnLoad(gameObject);
 
         GS = GameState.SETUP; // sets the world state to setup
 
@@ -98,12 +97,11 @@ public class GameManager : MonoBehaviour {
         world = GameObject.Find("WorldMaster");
         world.SetActive(true);
         // Sets BattleArea just in case of issue and disables
-        battleArea = GameObject.Find("BattleMaster");
+        // battleArea = GameObject.Find("BattleMaster");
         // BM = GameObject.Find("_BattleManager").GetComponent<BattleManager>();
-        battleArea.SetActive(false);
-        // Sets Main Camera to active and disables any others
+        // battleArea.SetActive(false);
+        // Sets Main Camera to active
         worldCamera.SetActive(true);
-        battleCamera.SetActive(false);
         // Sets Player/Companion to Active and Disables Battle Player
         player.SetActive(true);
         companion.SetActive(true);
@@ -123,7 +121,7 @@ public class GameManager : MonoBehaviour {
         }
         StartDebugCanvas(); // All GetComponent<Text> for debug
         // Disables Battle Canvas
-        battleCanvas.SetActive(false);
+        // battleCanvas.SetActive(false);
 
         GS = GameState.WOLRD; // sets GameState to World
 	}
@@ -168,9 +166,6 @@ public class GameManager : MonoBehaviour {
             break;
 
             case (GameState.BATTLE):
-
-                // Deactivates the camera switch button in debug canvas
-                switchButton.SetActive(false);
 
                 break;
 
@@ -225,9 +220,14 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+
     void LoadBattle() // Prep for Loading Battle
     {
         CancelInvoke("CallRandomNumber"); // stops calling the random number
+        SceneManager.LoadScene(battleScene);
+        GS = GameState.BATTLE;
+
+        /* OLD BATTLE MEATHOD*
         // Enabling Battle Area for Setup
         battleArea.SetActive(true);
 
@@ -245,6 +245,7 @@ public class GameManager : MonoBehaviour {
         GS = GameState.BATTLE;
         // Last Step, Switches Control to the Battle Manager and Loads all Battle Variables
         // BM.StartBattle();
+        */
         
     }
 

@@ -8,6 +8,7 @@ TagManager:
   - Companion
   - Enemy
   - Hero
+  - DeadEnemy
   layers:
   - Default
   - TransparentFX

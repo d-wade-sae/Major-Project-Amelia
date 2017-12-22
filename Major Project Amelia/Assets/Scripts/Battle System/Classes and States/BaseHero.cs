@@ -3,17 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class BaseHero
+public class BaseHero: BaseClass
 {
-    public string name;
-    // Health
-    public float baseHP;
-    public float currentHP;
-    // Stamina
-    public float baseStamina;
-    public float currentStamina;
-
-
-
-	
+    public float exp;
+    public float gold;
 }
