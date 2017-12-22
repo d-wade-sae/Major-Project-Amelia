@@ -32,8 +32,10 @@ public class BattleManager : MonoBehaviour {
     public List<GameObject> EnemiesInBattle = new List<GameObject>(); // List contains all enemies in battle
     public List<GameObject> HerosToManage = new List<GameObject>(); // List controlling which heros need input by player
 
-    [Header("Battle Canvas")]
+    [Header("Battle Canvas and Panels")]
     public GameObject battleCanvas;
+    public GameObject actionPanel;
+    public GameObject targetPanel;
 
     [Header("Prefabs")]
     public GameObject enemyButton;
@@ -52,6 +54,9 @@ public class BattleManager : MonoBehaviour {
         EnemiesInBattle.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
         HerosInBattle.AddRange(GameObject.FindGameObjectsWithTag("Hero"));
 
+        actionPanel.SetActive(false);
+        targetPanel.SetActive(false);
+
         // Spawns Buttons
         EnemyButtons();
         
@@ -59,7 +64,7 @@ public class BattleManager : MonoBehaviour {
 
     void Update()
     {
-        switch(battleState)
+        switch(battleState) // SWITCHING BATTLE STATE
         {
             case PerformAction.WAIT:
                 if (PerformList.Count > 0)
@@ -70,7 +75,7 @@ public class BattleManager : MonoBehaviour {
                 break;
 
             case PerformAction.TAKEACTION:
-                GameObject performer = GameObject.Find(PerformList[0].AttackersName);
+                GameObject performer = GameObject.Find(PerformList[0].AttackersName); // grabs the performer at top of performlist 
                 if(PerformList[0].Type == "Enemy")
                 {
                     EnemyState ES = performer.GetComponent<EnemyState>();
@@ -86,6 +91,36 @@ public class BattleManager : MonoBehaviour {
                 break;
 
             case PerformAction.PERFORMACTION:
+
+                break;
+        }
+
+        switch (HeroInput)
+        {
+            case HeroGUI.ACTIVATE:
+                if(HerosToManage.Count > 0)
+                {
+                    HerosToManage[0].transform.Find("Selector").gameObject.SetActive(true);
+                    HeroChoice = new HandleTurn();
+
+                    actionPanel.SetActive(true);
+                    HeroInput = HeroGUI.WAITING;
+                }
+                break;
+
+            case HeroGUI.DONE:
+
+                break;
+
+            case HeroGUI.INPUT1:
+
+                break;
+
+            case HeroGUI.INPUT2:
+
+                break;
+
+            case HeroGUI.WAITING:
 
                 break;
         }

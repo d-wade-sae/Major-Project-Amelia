@@ -24,16 +24,19 @@ public class HeroState : MonoBehaviour {
     private float cur_cooldown = 0f;
     private float max_cooldown = 1.5f;
 
-    // Attack Variables
+    [Header("Attack Variables")]
+    public GameObject EnemyToAttack;
     private Vector3 startPosition; // Start Position for moving
     private bool actionStarted = false;
-    public GameObject EnemyToAttack;
+    public GameObject selector;
+
     private float animSpeed = 10f;
 
     void Start ()
     {
         BM = GameObject.Find("_BattleManager").GetComponent<BattleManager>();
         startPosition = transform.position;
+        selector.SetActive(false);
     }
 	
 	void Update ()
