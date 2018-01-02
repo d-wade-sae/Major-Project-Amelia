@@ -57,9 +57,8 @@ MonoBehaviour:
   controllingPlayer: 0
   companionDistance: 0
   worldCamera: {fileID: 0}
-  battleCamera: {fileID: 0}
   switchButton: {fileID: 0}
-  enableDebug: 1
+  enableDebug: 0
   debugCanvas: {fileID: 0}
   battleCanvas: {fileID: 0}
   debugDetected: {fileID: 0}
@@ -67,10 +66,8 @@ MonoBehaviour:
   battleStartedDebug: {fileID: 0}
   distanceDebug: {fileID: 0}
   world: {fileID: 0}
-  battleArea: {fileID: 0}
-  testScene: test
-  mainScene: Character Test Scene
-  WS: 0
+  battleScene: Battle System
+  GS: 0
   playerDetected: 0
   battleStarted: 0
   randomNumber: 0

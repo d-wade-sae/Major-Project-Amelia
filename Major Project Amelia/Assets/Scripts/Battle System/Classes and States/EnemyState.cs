@@ -28,12 +28,14 @@ public class EnemyState : MonoBehaviour {
 
     // For the Progress Bar during Prototyping *yawn*
     private float cur_cooldown = 0f;
-    private float max_cooldown = 2.5f;
+    public float max_cooldown = 2.5f;
 
     void Start()
     {
         BM = GameObject.Find("_BattleManager").GetComponent<BattleManager>();
         startPosition = transform.position;
+        enemy.currentHP = enemy.baseHP;
+        enemy.baseStamina = enemy.currentStamina;
     }
 
     void Update()
@@ -66,12 +68,54 @@ public class EnemyState : MonoBehaviour {
                 break;
 
             case (TurnState.DEAD):
+                if (!enemy.alive)
+                {
+                    return;
+                }
+                else
+                {
+                    this.gameObject.tag = ("DeadEnemy");
+                    BM.EnemiesInBattle.Remove(this.gameObject);
 
+                    if (BM.EnemiesInBattle.Count > 0)
+                    {
+                        for (int i = 0; i < BM.PerformList.Count; i++)
+                        {
+                            if (i != 0)
+                            {
+                                if (BM.PerformList[i].AttackersObject == this.gameObject)
+                                {
+                                    BM.PerformList.Remove(BM.PerformList[i]);
+                                }
+                                if (BM.PerformList[i].AttackersTarget == this.gameObject)
+                                {
+                                    if (BM.EnemiesInBattle.Count == 0)
+                                    {
+                                        BM.PerformList[i].AttackersTarget = null;
+                                    }
+
+                                    else
+                                    {
+                                        BM.PerformList[i].AttackersTarget = BM.EnemiesInBattle[Random.Range(0, BM.EnemiesInBattle.Count)];
+                                    }
+                                }
+
+
+                            }
+                        }
+                    }
+                    this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                    enemy.alive = false;
+                    BM.EnemyButtons();
+
+                    BM.battleState = BattleManager.PerformAction.CHECKSTATUS;
+                    Destroy(this.gameObject);
+                }
                 break;
         }
     }
 
-    void UpdateProgressBar()
+    void UpdateProgressBar() // Used for prototype purposes only (ATB System)
     {
         cur_cooldown = cur_cooldown + Time.deltaTime;
         float calc_cooldown = cur_cooldown / max_cooldown;
@@ -85,7 +129,7 @@ public class EnemyState : MonoBehaviour {
     void ChooseAction()
     {
         HandleTurn myAttack = new HandleTurn();
-        myAttack.AttackersName = enemy.name;
+        myAttack.AttackersName = enemy.theName;
         myAttack.Type = "Enemy";
         myAttack.AttackersObject = this.gameObject;
         myAttack.AttackersTarget = BM.HerosInBattle[Random.Range(0, BM.HerosInBattle.Count)];
@@ -111,7 +155,7 @@ public class EnemyState : MonoBehaviour {
         yield return new WaitForSeconds(0.5f);
 
         // Damage Said Hero
-        // DoDamage();
+        DoDamage();
 
         // Move back to start Position
         Vector3 firstPosition = startPosition;
@@ -156,5 +200,21 @@ public class EnemyState : MonoBehaviour {
         return target != (transform.position = Vector3.MoveTowards(transform.position, target, animSpeed * Time.deltaTime));
     }
 
+    void DoDamage()
+    {
+
+        float calculateDamage = enemy.baseAttack;
+        HeroToAttack.GetComponent<HeroState>().TakeDamage(calculateDamage);
+    }
+
+    public void TakeDamage(float getDamageAmount)
+    {
+        enemy.currentHP -= getDamageAmount;
+        if (enemy.currentHP <= 0)
+        {
+            enemy.currentHP = 0;
+            currentState = TurnState.DEAD;
+        }
+    }
 
 }

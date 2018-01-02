@@ -11,6 +11,7 @@ public class HandleTurn
     public GameObject AttackersObject; // Attackers Object
     public GameObject AttackersTarget; // Targets Object
 
-    // For Later - Which Attack or Skill being Used
+    // Attack Damage
+    public float attackDamage;
 
 }
